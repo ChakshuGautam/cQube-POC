@@ -1,17 +1,23 @@
 // test adapter with sample pre-adapter event
 import { adapter } from "../src/index";
+import preAdapterInputSchema from "../src/spec/pre-adapter.schema.json";
+import attendanceEventSchema from "../src/spec/attendance.schema.json";
 
-const preAdapterInputEvent = {
-    "studentId": "123456",
-    "section": "A",
-    "grade": "1"
-};
-const event = adapter(schemaPreAdapter, schemaEvent, preAdapterInputEvent);
-console.log(event);
-// test adapter with invalid pre-adapter event
-const preAdapterInputEventInvalid = {
-    "studentId": "123456",
-    "section": "A",
-    "grade": "1",
-    "invalid": "invalid"
-};
+describe("adapter", () => {
+    it("should convert pre-adapter event to event", () => {
+        const preAdapterInputEvent = {
+            "studentId": "test-student-id",
+            "schoolId": "123",
+            "isPresent": true,
+            "grade": 1,
+            "section": "A"
+        };
+        const event = adapter(preAdapterInputSchema, attendanceEventSchema, preAdapterInputEvent);
+        expect(event).toEqual({
+            "schoolId": "123",
+            "isPresent": true,
+            "grade": 1,
+            "sectionInGrade": "A"
+        });
+    });
+});

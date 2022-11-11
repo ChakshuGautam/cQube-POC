@@ -1,53 +1,52 @@
 {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "http://example.com/example.json",
+    "$id": "http://example.com/pre-adapter.json",
+    "title": "Root Schema",
     "type": "object",
     "default": {},
-    "title": "Root Schema",
     "required": [
         "studentId",
-        "isPresent",
         "schoolId",
+        "isPresent",
         "grade",
         "section"
     ],
     "properties": {
         "studentId": {
-            "type": "integer",
-            "default": 0,
             "title": "The studentId Schema",
+            "type": "string",
+            "default": "",
             "examples": [
-                123
+                "test-student-id"
+            ]
+        },
+        "schoolId": {
+            "title": "The schoolId Schema",
+            "type": "string",
+            "default": "",
+            "examples": [
+                "123"
             ]
         },
         "isPresent": {
+            "title": "The isPresent Schema",
             "type": "boolean",
             "default": false,
-            "title": "The isPresent Schema",
             "examples": [
                 true
             ]
         },
-        "schoolId": {
-            "type": "integer",
-            "default": 0,
-            "title": "The schoolId Schema",
-            "examples": [
-                1234567890
-            ]
-        },
         "grade": {
+            "title": "The grade Schema",
             "type": "integer",
             "default": 0,
-            "title": "The grade Schema",
             "examples": [
                 1
             ]
         },
         "section": {
+            "title": "The section Schema",
             "type": "string",
             "default": "",
-            "title": "The section Schema",
             "examples": [
                 "A"
             ]
@@ -55,9 +54,9 @@
     },
     "examples": [
         {
-            "studentId": 123,
+            "studentId": "test-student-id",
+            "schoolId": "123",
             "isPresent": true,
-            "schoolId": 1234567890,
             "grade": 1,
             "section": "A"
         }
